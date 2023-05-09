@@ -1,26 +1,27 @@
-/*
+import React from "react";
+import ReactDOM from 'react-dom/client'
 
-<div>
-    <h1>Heading1</h1>
-    <h2>Heading2</h2>
-</div>
-
-<div>
-    <div>
-         <h1>Heading1</h1>
-         <h2>Heading2</h2>
-    </div>
-    <div>
-         <h1>Heading1</h1>
-         <h2>Heading2</h2>
-    </div>
-</div>
-
-*/
+/**
+ * Create a Server
+ * HMR --> Hot Module Replacement 
+ * file Watcher algorithm -- writeen in c++
+ * BUNDLING
+ * MINIFY
+ * REMOVE CONSOLE  --> Cleaning our Code
+ * Dev and Production Build
+ * Super Fast build algorithm
+ * Image Optimization
+ * Caching while development
+ * Compression the Size
+ * Compatble with older version of browser
+ * Parcel give functinallity to run server on HTTP on development phase using npx parcel index.html --https
+ * Port Number
+ * Consistent Hshing Algorithm  --> to do all cachimg for this
+ * Zero Config
+ * 
+ */
     
     
-    //React is Global Element is core of react --> react have api createElement
-    //have responsibillity to create react-Element
     const heading1 = React.createElement(
         "h1" , 
         {id : "heading2"} ,
@@ -57,16 +58,10 @@
         [children1 , children2]
     )
 
-    console.log(heading1) // React store the react Element as javascript object
-    //so react-element at the end of the it simple javascript object
+    console.log(heading1)
 
     const paragraph = React.createElement("p" , {id : "paragraph"} , "This is contain about MySelf")
 
-    //We have ReactDOM wgich is responsiable for Dom operation --> createRoot tell that what is pass inside it becomes the root of the app
     const createRoot = ReactDOM.createRoot(document.getElementById("root"))
 
-    const root1 = ReactDOM.createRoot(document.getElementById("root1"))
-
-    //render is conver this react-element to html tag and pass inside the root
-    root1.render(paragraph)
     createRoot.render(parentDiv)
