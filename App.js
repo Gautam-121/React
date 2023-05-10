@@ -18,50 +18,75 @@ import ReactDOM from 'react-dom/client'
  * Port Number
  * Consistent Hshing Algorithm  --> to do all cachimg for this
  * Zero Config
+ * Tree Shaking --> Removing Unwanted Code
  * 
  */
     
+
+    //React.createElement ==> It is give Javascript Object ==> HTML(DOM)
+
+
+    const header = ( // React Element
+        <div className="header">
+            <h1>Namste React</h1>
+            <nav>
+                <ul>
+                    <li>Home</li>
+                    <li>About Us</li>
+                    <li>Contact</li>
+                    <li>SignUp</li>
+                </ul>
+            </nav>
+        </div>
+    )
+
+    const Header = ()=> ( // React Element
+        <div className="header">
+            <h1 className="title">Namste React</h1>
+            <nav>
+                <ul className="nav">
+                    <a href=""><li>Home</li></a>
+                    <a href=""><li>About Us</li></a>
+                    <a href=""><li>Contact</li></a>
+                    <a href=""><li>SignUp</li></a>
+                </ul>
+            </nav>
+        </div>
+    )
+
+    //React Component
+    /**
+    Functional Component
+    Class Component
+    Name of component start with capital letter --> its not mandatory but it is good practise
+     */
+
     
-    const heading1 = React.createElement(
-        "h1" , 
-        {id : "heading2"} ,
-        "This is Heading1"
-    );
+    const HeaderComaponent = () => {
+        return <h1>Namste RAEAC</h1>
+    };
 
-    const heading2 = React.createElement(
-        "h2" , 
-        {id : "heading2"} ,
-        "This is Heading2"
-    );
+    const HeaderComaponent2 = () => {
+        return (
+            <div>
+                <h1>Namaste React functional component</h1>
+                <h2>Namste React</h2>
+            </div>
+        )
+    };
 
-    const divContainer = React.createElement(
-        "div" , 
-        {id : "container"} ,
-        [heading1 , heading2] // child pass inside an array
-    );
-
-    const children1 = React.createElement(
-        "div",
-        {id : "child1"},
-        [heading1 , heading2]
-    )
-
-    const children2 = React.createElement(
-        "div",
-        {id : "child2"},
-        [heading1 , heading2]
-    )
-
-    const parentDiv = React.createElement(
-        "div",
-        {id : "parent"},
-        [children1 , children2]
-    )
-
-    console.log(heading1)
-
-    const paragraph = React.createElement("p" , {id : "paragraph"} , "This is contain about MySelf")
+    const HeaderComaponent3 = () => (
+            <div>
+                {header} 
+                <Header/>
+                {Header()}
+                <h1>Namaste React functional component</h1>
+                <h2>Namste React</h2>
+            </div>
+         )
 
     const createRoot = ReactDOM.createRoot(document.getElementById("root"))
 
-    createRoot.render(parentDiv)
+    //createRoot.render(header) // render react Element
+    createRoot.render(<HeaderComaponent3/>) // render react component
+
