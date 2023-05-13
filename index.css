@@ -1,46 +1,118 @@
-#parent{
-    border: 1px solid black;
-    background-color: aqua
+body{
+    margin: 0px;
+    box-sizing: border-box;
 }
 
 .header{
-    border: 1px solid red;
-    display:flex;
-    align-items:center;
-    justify-content: space-between;
-    
-}
-
-.title{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color: brown;
-    font-weight: 100;;
-}
-
-.nav{
-    width: 400px;
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    padding-right: 80px;
-    list-style-type: none;
-    font-weight: 400;
+    background-color: #000000;
+    height: 70px;
 }
 
-a{
+.logo-img{
+    margin-left: 30px;
+}
+
+.nav-item{
+    width: 500px;
+    margin-right: 150px;
+}
+
+.nav-item > ul{
+    display: flex;
+    justify-content:space-around;
+}
+
+.nav-item > ul > a{
     text-decoration: none;
-    /* border: 1px solid red; */
-    border-radius: 8px;
-    padding: 8px;
+    color: rgb(255, 255, 255);
+    /* font-weight: 600; */
+    /* background-color: red; */
+    border: 1px solid transparent;
+    padding: 15px;
+    border-radius: 20px;
+    /* padding: 8px; */
 }
 
-a:list{
+.nav-item > ul > a:hover{
+    background-color: rgb(4, 248, 4);
     color: black;
 }
 
-a:hover{
-    background-color: rgb(52, 112, 52);
-    border-radius: 5px;
+.res-cart{
+    width: 300px;
+    margin-top: 90px;
+    margin-left: 70px;
+    margin-right: -25px;
+    padding: 25px;
+    background-color: hwb(0 96% 4% / 0.594);
+    box-sizing: border-box;
+    border: 1px solid white;
+}
+
+.res-cart:hover{
+    border: 1px solid rgb(240, 239, 239);
+    background-color:hwb(0 96% 4%);
+    box-shadow: 5px 5px 20px rgba(128, 128, 128, 0.932) ;
+}
+
+.res-cart > img {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.restarent-item{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.resName{
+    font-weight: bold;
+    font-family:cursive;
+    margin-top: -0.25rem;
+} 
+
+.resCusines{
+    font-weight:lighter;
+    color: rgb(104, 87, 87);
+    font-size:15px;
+    margin-top: -12px;
+}
+
+.resDetail{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: -10px;
+}
+
+.resRating{
+    /* border: 1px solid red; */
+    padding: 1px 5px 2px 5px;
+    /* padding-left:5px;
+    padding-right:5px; */
     color: white;
+    font-size: 15px;
+    background-color: rgba(54, 167, 54, 0.998);
+    
+}
+
+.resDeliverTime{
+    color: gray;
+    font-size:15px;
+}
+
+.resPrice{
+    color: gray;
+    font-size:15px;
+}
+
+.resOffer{
+    margin-top:15px;
+    color:brown ;
+    font-size: 1rem;
 }
 
 
