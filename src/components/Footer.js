@@ -1,7 +1,11 @@
+import React , {useState} from 'react'
+
 const Footer = () => {
-    return (
-      <h4>Footer</h4>
-    )
+  return(
+    <div>
+      <h1>Footer</h1>
+    </div>
+  )
 }
 
 export default Footer

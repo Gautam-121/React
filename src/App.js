@@ -1,12 +1,10 @@
 import React from "react";
 import ReactDOM from 'react-dom/client'
-import Header , { Title } from './components/Header' // this is default Import
-// import { Title } from "./components/Header"; // this is Named import
-import * as obj from './components/Header' // we export all named export so using . operator we can us that pertical component
+import Header from './components/Header' // this is default Import
 import Body from "./components/Body";
 import Footer from "./components/Footer";
-// obj.Header
-
+import Login from './components/Login'
+import Register from "./components/Register";
 
 
 const AppLayout = () => {
@@ -15,6 +13,7 @@ const AppLayout = () => {
       <Header />
       <Body />
       <Footer />
+      {/* <Login/> */}
     </>
   )
 }
