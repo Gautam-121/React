@@ -1,0 +1,52 @@
+.about-us{
+    background-color: rgb(245, 249, 249);
+}
+
+.first-about{
+    display: flex;
+}
+.about-img-first{
+    margin-top:10px;
+    margin-left: 65px;
+    border-radius: 10px;
+    border: none;
+}
+
+.about-first-para{
+    margin: 50px;
+}
+
+.heading-about-first{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.about-first-p{
+    font-size: large;
+    word-spacing: 2px;
+    font-style: italic;
+    color:gray;
+    font-weight: 500;
+}
+
+.second-about{
+    display: flex;
+    align-items: center;
+    margin-left: 65px;
+}
+
+.heading-about-second{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.about-second-p{
+    font-size: large;
+    word-spacing: 2px;
+    font-style:italic;
+    font-weight:500;
+    color:gray;
+}
+
+.about-img-second{
+    margin-right: 500px;
+    margin-left: 200px;
+}

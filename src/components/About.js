@@ -1,5 +1,7 @@
 import AppImage from "../asset/App-image.png"
 import DeliveryImage from "../asset/Delivery_image.jpg"
+import { Outlet } from "react-router-dom"
+import Profile from "./Profile"
 
 const About = () => {
     return (
@@ -32,6 +34,8 @@ const About = () => {
                     className="about-img-second"
                 />
             </div>
+            <Outlet/>
+            <Profile/>
         </div>
     )
 }

@@ -1,0 +1,56 @@
+.contact-container{
+    display: flex;
+    justify-content: space-evenly;
+    /* border: 1px solid red; */
+    max-width: 100%;
+    background-color: rgb(245, 249, 249);
+    height: 600px;
+}
+
+.teli-contact{
+    margin-top: 120px;
+}
+
+.info-contact{
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width:500px;
+    margin-top: 50px;
+    margin-right: 0px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.heading-contact{
+    margin-left: 15px;
+    font-size:50px;
+    font-style: italic;
+}
+
+.contact-name{
+    resize: none;
+    width:200%;
+    margin: 15px 25px 20px -80px;
+    padding: 8px;
+    border-radius: 10px;
+    border: 1px solid black;
+    font-size: larger;
+}
+
+.contact-btn{
+    background-color: darkcyan;
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    border: 1px solid transparent;
+    font-weight: 600;
+    width: 100px;
+    cursor: pointer;
+}
+
+.contact-btn:hover{
+    cursor: pointer;
+    background-color: darkgreen;
+}
