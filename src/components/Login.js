@@ -1,14 +1,13 @@
 import { useState } from "react"
 import { Link, useNavigate } from 'react-router-dom'
-import validation from "./errorValidation/LoginValidation"
+import validation from "./errorValidation/validation"
 
 const Login = () => {
 
     const [user, setUser] = useState({
-        email: "gaua",
-        password: "gaut"
-    }
-    )
+        email: "",
+        password: ""
+    })
 
     const [error , setError] = useState({})
 
@@ -24,15 +23,15 @@ const Login = () => {
 
     const submitHandler = (event)=>{
         event.preventDefault()
-        setError(validation(error))
+        setError(validation(user))
     }
 
-    if(error.email == ""  && error.password == ""){
+    if(error?.email?.length == 0  && error?.password?.length == 0){
 
-        const data =  getData()
+        const data =  {success : true }
 
         if(data.success){
-            alert("Login Succesuful")
+            // alert("Login Succesuful")
             navigate("/")
         }
         else{
@@ -55,32 +54,31 @@ const Login = () => {
     return (
         <div className="outer-login">
             <div className="login-page">
-                <h2>SignIn</h2>
+                <h2 className="login-header">SignIn</h2>
                 <form onSubmit={submitHandler} >
                     <div>
                         <input
                             type="email"
-                            className="login-email"
+                            className="login-property"
                             placeholder="Email"
                             name="email"
                             onChange={changeInput} 
                         />
-                        {error.email && <span className="text-danger">{error.email}</span>}
+                        {error.email && <p className="text-danger">*{error.email}</p>}
                     </div>
-                   
                     <div>
                         <input
                             type="password"
-                            className="login-password"
+                            className="login-property"
                             placeholder="Password"
                             name="password"
                             onChange={changeInput} 
                         />
-                     {error.password && <span className="text-danger">{error.password}</span>}
+                     {error.password && <p className="text-danger">*{error.password}</p>}
                     </div>
-                    <button className="login-btn" type="submit"><strong>Login</strong></button><br />
-                    <span>You are agree to our terms and policies</span><br />
-                   <Link to={"/resgister"}><button>Create Account</button></Link>
+                    <input type="submit" value="Login" className="login-btn" /><br/>
+                    <span>You are agree to our terms and policies</span>
+                   <Link to={"/signIn"}><button className="signIn-button">Create Account</button></Link>
                 </form>
             </div>
         </div>

@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import validation from "./errorValidation/registerValidation.js"
+import validation from "./errorValidation/validation.js"
 
 const Register = () => {
 
@@ -19,15 +19,15 @@ const Register = () => {
         const name = event.target.name
         const value = event.target.value
 
-        setUser({ ...user, name: value })
+        setUser({ ...user, [name]: value })
     }
 
     const submitHandler = (event) => {
         event.preventDefault()
-        setError(validation(value))
+        setError(validation(user))
     }
 
-    if (error.name == "" && error.email == "" && error.password == "") {
+    if (error?.name?.length == 0 && error?.email?.length == 0 && error?.password?.length == 0) {
 
         const data = getData()
 
@@ -36,63 +36,63 @@ const Register = () => {
             navigate("/login")
         }
         else {
-            console.log(data.message)
+            console.log('which page' , data)
         }
     }
 
     async function getData() {
 
-        const data = await fetch("http://localhost:4000/register", {
-            method: "POST",
+        const data = await fetch("http://localhost:4000/api/v1/signIn", {
+            method: "post",
             headers: {
                 "context-type": 'apllication/json'
             },
-            body: JSON.stringify(value)
+            body: JSON.stringify(user)
         })
-        return data
+        
+        const json = await data.json()
+
+        return json
     }
 
 
     return (
-        <div>
-            <div>
-                <form action="" onSubmit={submitHandler}>
-                    <div>
-                        <input
-                            type="text"
-                            className="register-name"
-                            name="name"
-                            placeholder="Name"
-                            onChange={changeInput}
-                        />
-                        {error.name && <span className="text-danger">{error.name}</span>}
-                    </div>
-                    <div>
-                        <input
-                            type="email"
-                            className="register-email"
-                            name="email"
-                            placeholder="Email"
-                            onChange={changeInput}
-                        />
-                        {error.email && <span className="text-danger">{error.email}</span>}
+        <div className="signin-container">
+            <h2 className="signin-title">Sign In</h2>
+            <form action="" className="signin-form" onSubmit={submitHandler}>
+                <div>
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="Name"
+                        onChange={changeInput}
+                        className="signin-input"
+                    />
+                    {error.name && <p className="text-danger">*{error.name}</p>}
+                </div>
+                <div>
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Email"
+                        onChange={changeInput}
+                        className="signin-input"
+                    />
+                    {error.email && <p className="text-danger">*{error.email}</p>}
 
-                    </div>
-                    <div>
-                        <input
-                            type="password"
-                            className="register-pasword"
-                            name="password"
-                            placeholder="Password"
-                            onChange={changeInput}
-                        />
-                        {error.password && <span className="text-danger">{error.password}</span>}
-                    </div>
-                    <button type='submit' className="btn btn-success w-100 rounded-0"><strong>Sign up</strong></button>
-                    <p>You are agree to our terms and policies</p>
-                    <Link to="/" className="btn btn-default border w-100 bg-light rounded-0 text-decoration-none">Login</Link>
-                </form>
-            </div>
+                </div>
+                <div>
+                    <input
+                        type="password"
+                        className="signin-input"
+                        name="password"
+                        placeholder="Password"
+                        onChange={changeInput}
+                    />
+                    {error.password && <p className="text-danger">*{error.password}</p>}
+                </div>
+                <button type='submit'  className="signin-button"><strong>Sign up</strong></button>
+            </form>
         </div>
     )
 }

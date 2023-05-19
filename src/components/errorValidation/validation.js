@@ -6,20 +6,27 @@ const validation = (value) => {
 
     const password_pattern = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%&])[a-zA-Z0-9@#$%&]{8,15}$/
 
-    if(value.email == ""){
+    if(value?.name?.length == 0){
+        error.name = "Name shuld not empty"
+    }
+    else{
+        error.name = ""
+    }
+
+    if(value?.email?.length == 0){
         error.email = "Email shuld not empty"
     }
-    else if(!email_pattern.test(value.email)){
+    else if(!email_pattern?.test(value?.email)){
         error.email = "Please Enter Valid Email"
     }
     else{
         error.email = ""
     }
 
-    if(value.password == ""){
+    if(value?.password?.length == 0){
         error.password = "password shuld not empty"
     }
-    else if(!password_pattern.test(value.password)){
+    else if(!password_pattern?.test(value?.password)){
         error.password = "Pasword is not match"
     }
     else{

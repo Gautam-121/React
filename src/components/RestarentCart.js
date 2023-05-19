@@ -21,7 +21,7 @@ const RestarentCart = ({
             <h3 className="resName">{name}</h3>
             <p className="resCusines">{cuisines.join(" , ")}</p>
             <div className="resDetail">
-                <p className="resRating">☆ {avgRating}</p>
+                <p className={avgRating>=4? "resRatingGreen" : "resRatingOrange"}>☆ {avgRating}</p>
                 <p>•</p>
                 <p className="resDeliverTime">{deliveryTime} Mins</p>
                 <p>•</p>

@@ -1930,3 +1930,4 @@ export const restarentCards = [
         "subtype": "basic"
     }
 ]
+
