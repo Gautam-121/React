@@ -1,28 +1,16 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { IMG_CDN_URL } from "../constants"
+import useRestarent from "../utils/useRestarent"
 import Shimmer from "./Shimmer"
 
 const RestarantMenu = () => {
 
     //How to read dynamic url route
-    const [restarant, setRestarant] = useState(null)
+    /*const [restarant, setRestarant] = useState(null)*/
+
     const {resId} = useParams()
-
-    useEffect(() => {
-        getRestarantInfo()
-    }, [])
-
-    async function getRestarantInfo(){
-
-        const data = await fetch(
-            `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=21.1458004&lng=79.0881546&restaurantId=${resId}&submitAction=ENTER`
-        )
-        const json = await data.json()
-        // console.log(json)
-        setRestarant(json)
-        // console.log("datais" , json?.data?.cards[0]?.card?.card?.info?.id)
-    }
+    const restarant = useRestarent(resId)
 
     return (!restarant)? <Shimmer/> : (
         <div className="menu">
@@ -51,37 +39,6 @@ const RestarantMenu = () => {
             </div>
         </div>
     )
-
-    // return (!restarant) ?
-    //     <Shimmer /> :
-    //     (
-    //         <div className="menu">
-    //             <div>
-    //                 <h1>Restaraunt Id : 123 </h1>
-    //                 <h2>{restarant?.name}</h2>
-    //                 <h3>{params}</h3>
-    //                 <img
-    //                     src={IMG_CDN_URL + restarant.cloudanaryImgageId}
-    //                     alt=""
-    //                 />
-    //                 <h3>{restarant?.area}</h3>
-    //                 <h3>{restarant?.city}</h3>
-    //                 <h3>{restarant?.avgRating} stars</h3>
-    //                 <h3>{restarant?.costForTwoMsg}</h3>
-    //             </div>
-    //             <div>
-    //                 <label htmlFor="">Menu</label>
-    //                 {console.log(Object.values(restarant.menu.items))}
-    //                 <ul>
-    //                     {
-    //                         Object.values(restarant?.menu?.items).map(item => (
-    //                             <li key={item.id}>{item.name}</li>
-    //                         ))
-    //                     }
-    //                 </ul>
-    //             </div>
-    //         </div>
-    //     )
 }
 
 export default RestarantMenu

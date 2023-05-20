@@ -1,6 +1,6 @@
 import { useState } from "react"
 import Teli_logo from "../asset/teli_image.png"
-import validationContact from "./errorValidation/validation"
+import {validation} from "../utils/helper"
 
 const Contact = ()=>{
 
@@ -19,7 +19,7 @@ const Contact = ()=>{
 
     const submitHandler = (event)=>{
         event.preventDefault()
-        setError(validationContact(user))
+        setError(validation(user))
     }
 
     if(error?.name?.length == 0 && error?.email?.length == 0){

@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Link, useNavigate } from 'react-router-dom'
-import validation from "./errorValidation/validation"
+import {validation} from "../utils/helper"
 
 const Login = () => {
 

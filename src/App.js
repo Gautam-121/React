@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy , Suspense } from "react";
 import ReactDOM from 'react-dom/client'
 import Header from './components/Header' // this is default Import
 import Body from "./components/Body";
@@ -12,9 +12,28 @@ import RestarantMenu from "./components/RestarantMenu";
 import Cart from "./components/Cart";
 import Profile from "./components/Profile";
 import { createBrowserRouter , RouterProvider , Outlet} from "react-router-dom";
+import Shimmer from "./components/Shimmer";
+// import Instamart from "./components/Instamart";
 
+//Lazy Lading
+//Chunking
+//Code Spliting
+//Dynamic Bundling
+//Lazy Loading
+// On Demand Import
+
+//This is Import it lazy way
+
+const Instamart = lazy(()=>import("./components/Instamart"))// import is promise 
+//Upon On Demand Loading --> 
 
 const AppLayout = () => {
+
+
+  //Never ever write lazy loading inside component
+  // const Instamart = lazy(()=>import("./components/Instamart"))// import is promise 
+
+
   return (
     <>
       <Header />
@@ -65,6 +84,12 @@ const appRouter = createBrowserRouter([
       {
         path : "/restarant/:resId",
         element : <RestarantMenu/>
+      },
+      {
+        path : "/instamart",
+        element : <Suspense fallback = {<h1>THIS IS</h1>}>
+                    <Instamart/>
+                  </Suspense>
       }
     ]
   },

@@ -24,6 +24,15 @@ const Title = () => {
 const Header = () => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // const isLogged = useAuth()
+
+  // const localstorage = useLocaleStorage()
+
+  // const [getLocaleVariable , setLoacaleVariable] = useLocaleStorage()
+
+
+
   return (
     <div className="header">
       <Title />
@@ -33,6 +42,7 @@ const Header = () => {
           <Link to="/about">About</Link>
           <Link to="/contact">Contact</Link>
           <Link to="/cart">Cart</Link>
+          <Link to= "/instamart">Instamart</Link>
           <Link to= {isLoggedIn? "/logOut" : "/login"}>{isLoggedIn?  " "  : "Login" }</Link>
         </ul>
       </nav>

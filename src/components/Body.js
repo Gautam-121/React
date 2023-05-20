@@ -2,67 +2,17 @@ import { useEffect, useState } from 'react'
 import RestarentCart from './RestarentCart'
 import Shimmer from './Shimmer'
 import { Link } from 'react-router-dom'
-
-function filterData(restarents, searchInput) {
-    const filterResList = restarents.filter(restarent => (
-        restarent?.data?.name?.toLocaleLowerCase().includes(searchInput?.toLocaleLowerCase())
-    ))
-    return filterResList
-}
-
-function getReatingTopToBottom([...restarents]) {
-    restarents.sort((a, b) => {
-        return b?.data?.avgRating - a?.data?.avgRating
-    })
-    return restarents
-}
-
-function getTopRatedRestarent(restarents) {
-    const getTopRatedRestarent = restarents.filter(restarent => (
-        restarent?.data?.avgRating >= 4
-    ))
-    return getTopRatedRestarent
-}
-
-function lowToHighDeliveryTime([...restarents]) {
-    restarents.sort((a, b) => {
-        return a?.data?.deliveryTime - b?.data?.deliveryTime
-    })
-    return restarents
-}
-
-function costLowToHigh([...restarents]) {
-    restarents.sort((a, b) => {
-
-        if (a?.data?.costForTwo == b?.data?.costForTwo) {
-            return a?.data?.deliveryTime - b?.data?.deliveryTime
-        }
-        else {
-            return a?.data?.costForTwo - b?.data?.costForTwo
-        }
-    })
-    return restarents
-}
-
-function costHighToLow([...restarents]) {
-    restarents.sort((a, b) => {
-
-        if (a?.data?.costForTwo == b?.data?.costForTwo) {
-            return a?.data?.deliveryTime - b?.data?.deliveryTime
-        }
-        else {
-            return b?.data?.costForTwo - a?.data?.costForTwo
-        }
-    })
-    return restarents
-}
+import {
+    filterData , 
+    getReatingTopToBottom , 
+    getTopRatedRestarent,
+    lowToHighDeliveryTime,
+    costLowToHigh,
+    costHighToLow
+} from "../utils/helper"
+import useOnline from '../utils/useOnline'
 
 const Body = () => {
-
-    // dont create use-state use-Effect inside if and else 
-    // if(true){
-    //     const [allResta , setAllResta] = useState()
-    // }
 
     const [searchInput, setSearchInput] = useState("")
 
@@ -70,7 +20,6 @@ const Body = () => {
     let [searchRestarent, setSearchRestarent] = useState([])
 
     useEffect(() => {
-        //Api call with empty dependency array --> callback function called once 
         getRestarents()
     }, [])
 
@@ -84,6 +33,13 @@ const Body = () => {
 
         setRestarent(json?.data?.cards?.[2].data?.data?.cards)
         setSearchRestarent(json?.data?.cards?.[2].data?.data?.cards)
+    }
+
+    const isOnline = useOnline()
+
+    //Early return
+    if(!isOnline){
+        return <h1>offline, please check your internet connection!!</h1>
     }
 
     if (!restarents) return null
