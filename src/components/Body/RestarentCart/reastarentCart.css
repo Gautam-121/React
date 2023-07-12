@@ -1,0 +1,99 @@
+.res-cart{
+    width: 300px;
+    margin-top: 30px;
+    margin-left: 70px;
+    margin-right: -25px;
+    padding: 25px;
+    background-color: rgb(253 253 253);
+    border-radius: 25px;
+    box-sizing: border-box;
+    border: 1px solid white;
+    cursor: pointer;
+}
+
+.res-cart:hover{
+    border: 1px solid rgb(240, 239, 239);
+    border-radius: 25px;
+    background-color:rgb(250 250 250);
+    box-shadow: 5px 5px 20px rgba(128, 128, 128, 0.932) ;
+}
+
+.res-cart > img {
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 25px;
+}
+
+.restarent-item{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.resName{
+    color: black;
+    font-weight: bold;
+    font-family: 'Raleway', sans-serif;
+    margin-top: -0.25rem;
+    margin-left: 8px;
+} 
+
+.resCusines{
+    font-weight:lighter;
+    font-family: 'Raleway', sans-serif;
+    color: rgb(104, 87, 87);
+    font-size:15px;
+    margin-top: -12px;
+    margin-left: 8px;
+}
+
+.resDetail{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: -15px;
+}
+
+.resRatingGreen{
+    /* border: 1px solid red; */
+    padding: 1px 5px 2px 5px;
+    /* padding-left:5px;
+    padding-right:5px; */
+    color: white;
+    font-size: 15px;
+    background-color: #24693F;
+    
+}
+
+.resRatingOrange{
+    /* border: 1px solid red; */
+    padding: 1px 5px 2px 5px;
+    /* padding-left:5px;
+    padding-right:5px; */
+    color: white;
+    font-size: 15px;
+    background-color:#DB7C38;
+    
+}
+
+.resDeliverTime{
+    color: gray;
+    font-size:15px;
+}
+
+.resPrice{
+    color: gray;
+    font-size:15px;
+}
+
+.res-offer-seperater{
+    border: 1px solid #E8E8E8;
+    /* margin-top: 10px; */
+}
+
+.res-offer{
+    margin-left: 8px;
+    margin-top:10px;
+    color:#fa3a4e ;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1rem;
+}

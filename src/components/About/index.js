@@ -1,12 +1,12 @@
-import AppImage from "../asset/App-image.png"
-import DeliveryImage from "../asset/Delivery_image.jpg"
+import AppImage from "../../asset/App-image.png"
+import DeliveryImage from "../../asset/Delivery_image.jpg"
 import { Outlet } from "react-router-dom"
-import Profile from "./Profile"
+import Profile from "../Profile"
+import "./about.css"
 
 const About = () => {
     return (
         <div className="about-us">
-
             <div className="first-about">
                 <img
                     src={AppImage}
@@ -34,8 +34,6 @@ const About = () => {
                     className="about-img-second"
                 />
             </div>
-            <Outlet/>
-            <Profile/>
         </div>
     )
 }

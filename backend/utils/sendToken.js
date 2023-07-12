@@ -7,16 +7,17 @@ const sendToken = (user , res , statusCode) => {
     })
 
     const option = {
-        expire : new Date(
+        expires : new Date(
             Date.now() + process.env.COOKIE_SECRET * 24 * 60 * 60 * 1000
         ),
         httpOnly : true
     }
 
-    res.status(statusCode).cookie("token" , token , option).json({
+    res.status(statusCode).json({
         success : true ,
         user,
-        token
+        token,
+        option
     })
 }
 

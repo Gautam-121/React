@@ -7,9 +7,14 @@ const register = async(req ,res , next)=>{
     try{
 
         console.log("Enter")
-        console.log(req)
 
     const {name , email , password} = req.body
+
+    const isAlredyExist = await User.findOne({email})
+
+    if(isAlredyExist){
+        return next(new ErrorHandler("email is Already exist" , 400))
+    }
 
     const user = await User.create({
         name : name,
@@ -35,14 +40,18 @@ const login = async (req , res , next) => {
 
     const user = await User.findOne({email}).select("+password")
 
+    console.log(user)
+
     if(!user){
         return next(new ErrorHandler("Resource Not Found , Please Register" , 401))
     }
 
-    const compare = user.comparePassword(password)
+    const compare = await user.comparePassword(password)
+
+    console.log(compare)
 
     if(!compare){
-        return next(new ErrorHandler("Password is Wrong", 400))
+        return next(new ErrorHandler("Wrong Email and Password", 400))
     }
 
     sendToken(user , res , 200)
@@ -70,4 +79,6 @@ const logOut = async (req , res , next)=>{
 }
 
 
-module.exports = {register , login , logOut}
+
+
+module.exports = {register , login , logOut  }

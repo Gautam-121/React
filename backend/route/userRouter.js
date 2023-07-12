@@ -1,8 +1,8 @@
 const express = require("express")
 const router = express.Router()
-const {register , login , logOut} = require("../controller/userController")
+const {register , login , logOut , getData , customerDetail} = require("../controller/userController")
 
-router.route("/signIn").post(register)
+router.route("/register").post(register)
 
 router.route("/login").post(login)
 

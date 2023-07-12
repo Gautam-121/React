@@ -1,15 +1,19 @@
 import { useState } from "react"
-import Teli_logo from "../asset/teli_image.png"
-import {validation} from "../utils/helper"
-
+import Teli_logo from "../../asset/teli_image.png"
+import {validation} from "../../utils/validation"
+import "./contact.css"
+import { sendData } from "../../utils/backendCall"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Contact = ()=>{
 
     const [user , setUser] = useState({
         name : "",
-        email : ""
+        email : "",
+        message : ""
     })
 
-    const [error , setError] = useState({hobbies : "cricket"})
+    const [error , setError] = useState({})
 
     const changeHandler = (event)=>{
         const name = event.target.name
@@ -22,31 +26,23 @@ const Contact = ()=>{
         setError(validation(user))
     }
 
-    if(error?.name?.length == 0 && error?.email?.length == 0){
-        //setContactData()
-    }
+    console.log(user)
 
-    async function setContactData(){
-        const data = await fetch("http://localhost:4000/contact" , {
-           method : "POST",
-           headers : {
-            "context-text" : "application/json"
-           },
-           body : JSON.stringify(user)
-        })
-
-        const json = await data.json()
-        return json
+    if(error?.name === "" && error?.email === "" && error.message===""){
+        console.log("Gauatanm")
+        toast.success("Thanks for contacting MenuHub , We will reply ASAP")
+        setError({})
     }
 
 
     return(
-       <form className="contact-container" onSubmit={submitHandler}>
+      <div  className="contact-container"> 
         <img 
         src={Teli_logo}
         alt="This is Contact Image"
         className="teli-contact" 
         />
+        <form onSubmit={submitHandler}>
         <div className="info-contact">
             <h1 className="heading-contact">Contact Us</h1>
             <div>
@@ -79,12 +75,18 @@ const Contact = ()=>{
                 onChange={changeHandler}
                 placeholder="Type Your Message Here...."
                 ></textarea>
+            {error?.message && <p className="text-danger">*{error.message}</p>}
             </div>
             <input type="submit"  value="Submit" className="contact-btn"/>
-           {(error?.name?.length == 0 && error?.email?.length ==0) && <h3>Thanks for contacting MenuHub , We will reply ASAP</h3> }
         </div>
        </form>
+       <ToastContainer
+       hideProgressBar
+       autoClose={200}
+       />
+      </div>
     )
 }
 
 export default Contact
+

@@ -1,41 +1,3 @@
-export const validation = (value) => {
-
-    const error = {}
-
-    const email_pattern = /^\w+([.-]?\w+)@\w+([.-]?\w+)(\.\w{2,3})+$/
-
-    const password_pattern = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%&])[a-zA-Z0-9@#$%&]{8,15}$/
-
-    if(value?.name?.length == 0){
-        error.name = "Name shuld not empty"
-    }
-    else{
-        error.name = ""
-    }
-
-    if(value?.email?.length == 0){
-        error.email = "Email shuld not empty"
-    }
-    else if(!email_pattern?.test(value?.email)){
-        error.email = "Please Enter Valid Email"
-    }
-    else{
-        error.email = ""
-    }
-
-    if(value?.password?.length == 0){
-        error.password = "password shuld not empty"
-    }
-    else if(!password_pattern?.test(value?.password)){
-        error.password = "Pasword is not match"
-    }
-    else{
-        error.password = ""
-    }
-
-    return error
-}
-
 export function filterData(restarents, searchInput) {
     const filterResList = restarents.filter(restarent => (
         restarent?.data?.name?.toLocaleLowerCase().includes(searchInput?.toLocaleLowerCase())
@@ -43,49 +5,194 @@ export function filterData(restarents, searchInput) {
     return filterResList
 }
 
-export function getReatingTopToBottom([...restarents]) {
-    restarents.sort((a, b) => {
-        return b?.data?.avgRating - a?.data?.avgRating
-    })
-    return restarents
-}
+export function filterResdata( name , setSearchRestarent , restarents , itemSelect , setItemSelect ){
 
-export function getTopRatedRestarent(restarents) {
-    const getTopRatedRestarent = restarents.filter(restarent => (
-        restarent?.data?.avgRating >= 4
-    ))
-    return getTopRatedRestarent
-}
-
-export function lowToHighDeliveryTime([...restarents]) {
-    restarents.sort((a, b) => {
-        return a?.data?.deliveryTime - b?.data?.deliveryTime
-    })
-    return restarents
-}
-
-export function costLowToHigh([...restarents]) {
-    restarents.sort((a, b) => {
-
-        if (a?.data?.costForTwo == b?.data?.costForTwo) {
-            return a?.data?.deliveryTime - b?.data?.deliveryTime
+    itemSelect.forEach(element => {
+        
+        if(element.name === name){
+            element.active = true
         }
-        else {
-            return a?.data?.costForTwo - b?.data?.costForTwo
+        else{
+            element.active = false
         }
     })
-    return restarents
-}
 
-export function costHighToLow([...restarents]) {
-    restarents.sort((a, b) => {
+    let updateRes = [...restarents]
 
-        if (a?.data?.costForTwo == b?.data?.costForTwo) {
-            return a?.data?.deliveryTime - b?.data?.deliveryTime
+    itemSelect.forEach(element => {
+
+        if(element.active && element.name === "Rating4+"){
+            updateRes = updateRes.filter(restarent => (
+                restarent?.data?.avgRating >= 4
+            ))
         }
-        else {
-            return b?.data?.costForTwo - a?.data?.costForTwo
+
+        if(element.active && element.name === "Rating : High To Low"){
+            updateRes.sort((a, b) => {
+                return b?.data?.avgRating - a?.data?.avgRating
+            })
+        }
+
+        if(element.active && element.name === "Delivery Time"){
+            updateRes.sort((a, b) => {
+                return a?.data?.deliveryTime - b?.data?.deliveryTime
+            })
+        }
+
+        if(element.active && element.name === "Cost: Low To High"){
+            updateRes.sort((a, b) => {
+
+                if (a?.data?.costForTwo == b?.data?.costForTwo) {
+                    return a?.data?.deliveryTime - b?.data?.deliveryTime
+                }
+                else {
+                    return a?.data?.costForTwo - b?.data?.costForTwo
+                }
+            })
+        }
+
+        if(element.active && element.name === "Cost: High To Low"){
+            updateRes.sort((a, b) => {
+
+                if (a?.data?.costForTwo == b?.data?.costForTwo) {
+                    return a?.data?.deliveryTime - b?.data?.deliveryTime
+                }
+                else {
+                    return b?.data?.costForTwo - a?.data?.costForTwo
+                }
+            })
         }
     })
-    return restarents
+
+    setSearchRestarent(updateRes)
+    setItemSelect(itemSelect)
+
+    // itemSelect.forEach(element => {
+    //     if(element.name === name) element.active = !element.active
+    // });
+
+
+    // itemSelect.forEach(element => {
+
+    //     if(element.active && element.name === "Rating4+"){
+    //         updateRes = updateRes.filter(restarent => (
+    //             restarent?.data?.avgRating >= 4
+    //         ))
+    //     }
+
+    //     if(element.active && element.name === "Rating : High To Low"){
+    //         updateRes.sort((a, b) => {
+    //             return b?.data?.avgRating - a?.data?.avgRating
+    //         })
+    //     }
+
+    //     if(element.active && element.name === "Delivery Time"){
+    //         updateRes.sort((a, b) => {
+    //             return a?.data?.deliveryTime - b?.data?.deliveryTime
+    //         })
+    //     }
+
+    //     if(element.active && element.name === "Cost: Low To High"){
+    //         updateRes.sort((a, b) => {
+
+    //             if (a?.data?.costForTwo == b?.data?.costForTwo) {
+    //                 return a?.data?.deliveryTime - b?.data?.deliveryTime
+    //             }
+    //             else {
+    //                 return a?.data?.costForTwo - b?.data?.costForTwo
+    //             }
+    //         })
+    //     }
+
+    //     if(element.active && element.name === "Cost: High To Low"){
+    //         updateRes.sort((a, b) => {
+
+    //             if (a?.data?.costForTwo == b?.data?.costForTwo) {
+    //                 return a?.data?.deliveryTime - b?.data?.deliveryTime
+    //             }
+    //             else {
+    //                 return b?.data?.costForTwo - a?.data?.costForTwo
+    //             }
+    //         })
+    //     }
+    // })
+
+    
+
+
+    // if(name === "Rating4+"){
+        
+    //     if( !filtOption.active ){
+    //         updateRes = updateRes.filter(restarent => (
+    //             restarent?.data?.avgRating >= 4
+    //         ))
+    //         filtOption.active = !filtOption.active 
+    //     }
+    //     filtOption.active = !filtOption.active
+    //     // setSearchRestarent(getTopRatedRestarent)
+    // }
+
+    // if(name === "Rating : High To Low"){
+        
+    //     if(!filtOption.active){
+    //         updateRes.sort((a, b) => {
+    //             return b?.data?.avgRating - a?.data?.avgRating
+    //         })
+    //     }
+    //     filtOption.active = !filtOption.active
+    //     // setSearchRestarent(rest)
+    // }
+
+    // if(name === "Delivery Time"){
+
+    //     if(!filtOption.active){
+    //         updateRes.sort((a, b) => {
+    //             return a?.data?.deliveryTime - b?.data?.deliveryTime
+    //         })
+    //     }
+    //     filtOption.active = !filtOption.active
+
+    //     // const rest = [...restarents]
+    //     // updateRes.sort((a, b) => {
+    //     //     return a?.data?.deliveryTime - b?.data?.deliveryTime
+    //     // })
+    //     // setSearchRestarent(rest)
+    // }
+
+    // if(name === "Cost: Low To High"){
+        
+    //     if(!filtOption.active){
+    //         updateRes.sort((a, b) => {
+
+    //             if (a?.data?.costForTwo == b?.data?.costForTwo) {
+    //                 return a?.data?.deliveryTime - b?.data?.deliveryTime
+    //             }
+    //             else {
+    //                 return a?.data?.costForTwo - b?.data?.costForTwo
+    //             }
+    //         })
+    //     }
+    //     filtOption.active = !filtOption.active
+
+    //     // setSearchRestarent(rest)
+    // }
+
+    // if(name === "Cost: High To Low"){
+        
+    //     if(!filtOption.active){
+    //         updateRes.sort((a, b) => {
+
+    //             if (a?.data?.costForTwo == b?.data?.costForTwo) {
+    //                 return a?.data?.deliveryTime - b?.data?.deliveryTime
+    //             }
+    //             else {
+    //                 return b?.data?.costForTwo - a?.data?.costForTwo
+    //             }
+    //         })
+    //     }
+    //     filtOption.active = !filtOption.active
+    //     // setSearchRestarent(rest)
+    // }
+
 }
+

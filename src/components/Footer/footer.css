@@ -1,0 +1,14 @@
+.footer-container{
+    background-color: lightgray;
+    opacity: 0.9;
+    display: flex;
+    align-items: center;
+    /* border: 1px solid red; */
+    height: 70px;
+    font-family: 'Raleway', sans-serif;
+}
+
+
+.footer-container>p{
+    margin: auto;
+}

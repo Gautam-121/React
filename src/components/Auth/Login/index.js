@@ -1,6 +1,13 @@
 import { useState } from "react"
 import { Link, useNavigate } from 'react-router-dom'
-import {validation} from "../utils/helper"
+import {validation} from "../../../utils/validation"
+import { sendData } from "../../../utils/backendCall"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import {setCookie , getCookie , removeCookie} from "../../../utils/cookie"
+import "./login.css"
+
+
 
 const Login = () => {
 
@@ -13,45 +20,41 @@ const Login = () => {
 
     const navigate =  useNavigate()
 
-    const changeInput = (event) => {
-
-        const name = event.target.name
-        const value = event.target.value
-
-        setUser({ ...user, [name]: value })
-    }
-
+    const changeInput = (event) => setUser({ ...user, [ event.target.name]: event.target.value})
+    
     const submitHandler = (event)=>{
         event.preventDefault()
         setError(validation(user))
     }
 
-    if(error?.email?.length == 0  && error?.password?.length == 0){
+    async function getResData(){
+    
+        const data = await sendData(user , "post" , "login")
 
-        const data =  {success : true }
+        console.log("login" , data)
 
         if(data.success){
-            // alert("Login Succesuful")
-            navigate("/")
+
+            removeCookie("token")
+            toast.success("Login Successully")
+            setCookie("token" , data.token)
+
+            setTimeout(()=>{
+                navigate("/")
+                },1500)
+
+            return
         }
-        else{
-            console.log(data.error)
-            alert("No User resgister , Please register Your account")
-        }
+
+        setError({message : data.message})
     }
 
-    async function getData(){
-        const data =  await fetch("http://localhost:4000/login" , {
-            method : "POST",
-            headers : {
-                "context-type" : "application/json"
-            },
-            body : JSON.stringify(user)
-        })
-        return data
+    if(error?.email == ""  && error?.password == ""){
+        getResData()
     }
-    
+
     return (
+        <>
         <div className="outer-login">
             <div className="login-page">
                 <h2 className="login-header">SignIn</h2>
@@ -76,12 +79,18 @@ const Login = () => {
                         />
                      {error.password && <p className="text-danger">*{error.password}</p>}
                     </div>
-                    <input type="submit" value="Login" className="login-btn" /><br/>
-                    <span>You are agree to our terms and policies</span>
-                   <Link to={"/signIn"}><button className="signIn-button">Create Account</button></Link>
+                    <input type="submit" value="Login" className="login-btn" /><br/><br />
+                    {error.message && <p className="text-danger">*{error.message}</p>}
+                    <hr/>
+                    <span>Do not have an account ?</span>
+                   <Link to={"/signIn"}><button className="signIn-button">Sign up</button></Link>
                 </form>
             </div>
         </div>
+        <ToastContainer
+          hideProgressBar
+        />
+        </>
     )
 }
 

@@ -1,0 +1,30 @@
+.filter-res{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* border: 1px solid red; */
+    margin-top: 40px;
+}
+
+.total-res{
+    font-size:30px;
+    font-weight: 500;
+    font-family: 'Raleway', sans-serif;
+    margin-left: 70px;
+}
+
+.restarent-link{
+    text-decoration: none;
+}
+
+.No-res{
+    margin: auto;
+    font-family: 'Raleway', sans-serif;
+    font-size: 24px;
+    color: #333333;
+    text-align: center;
+    margin-top: 100px;
+    font-weight:500;
+    /* border: 1px solid red; */
+    height: 40vh;
+}

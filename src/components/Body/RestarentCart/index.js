@@ -1,4 +1,5 @@
-import { IMG_CDN_URL } from "../constants";
+import { IMG_CDN_URL } from "../../../utils/constants";
+import "./reastarentCart.css"
 
 const RestarentCart = ({
     name,
@@ -17,6 +18,7 @@ const RestarentCart = ({
             <img
                 src={IMG_CDN_URL + cloudinaryImageId}
                 alt="This is Res-Logo"
+                className="restarent-cart-img"
             />
             <h3 className="resName">{name}</h3>
             <p className="resCusines">{cuisines.join(" , ")}</p>
@@ -27,11 +29,14 @@ const RestarentCart = ({
                 <p>•</p>
                 <p className="resPrice">₹{costForTwo / 100} For Two</p>
             </div>
-            <hr />
-            <div className="resOffer">
-                <span></span>
-                <span>{offer}</span>
-            </div>
+             {
+                offer ?
+                <div>
+                    <div className="res-offer-seperater"></div>
+                    <div className="res-offer">{offer}</div>
+                </div>
+                : ""
+             }
         </div>
     );
 };

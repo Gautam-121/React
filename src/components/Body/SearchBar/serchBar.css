@@ -1,0 +1,22 @@
+.serchbar-container{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    margin: 30px auto;
+}
+
+.serch-input{
+    border:none;
+    width: 70%;
+    padding: 8px;
+    font-size: 16px;
+    color: #333;
+    text-decoration: none;
+    outline: none;
+    /* position: fixed; */
+    box-shadow: rgba(28, 28, 28, 0.08) 0px 2px 8px;
+    height: 24px;
+    background: rgb(255 255 255);
+    border: rgb(232 232 232);
+}

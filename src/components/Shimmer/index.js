@@ -1,9 +1,11 @@
+import "./shimmer.css"
+
 const Shimmer = ()=>{
 
     const restarentList = new Array(20)
 
     return (
-       <div className="shimmer-container">
+       <div className="max-width shimmer-container">
            {restarentList
             .fill("")
             .map((e , index)=>{

@@ -1,0 +1,56 @@
+.error-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: 'Raleway', sans-serif;
+  }
+  
+  /* Error Code */
+  .error-code {
+    font-size: 6rem;
+    color: #e74c3c;
+    margin-bottom: 1rem;
+    font-family: 'Raleway', sans-serif;
+  }
+  
+  /* Error Message */
+  .error-message {
+    font-size: 2rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-family: 'Raleway', sans-serif;
+  }
+  
+  /* Back Button */
+  .back-button {
+    background-color: #2980b9;
+    color: #fff;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: 'Raleway', sans-serif;
+  }
+  
+  .back-button:hover {
+    background-color: #1a5276;
+  }
+  
+  .back-button:focus {
+    outline: none;
+  }
+  
+  .back-button a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .back-button a:hover {
+    color: #fff;
+    text-decoration: none;
+  }
