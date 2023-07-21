@@ -1,7 +1,8 @@
 import { IMG_CDN_URL } from "../../../utils/constants";
 import "./reastarentCart.css"
 
-const RestarentCart = ({
+const RestarentCart = 
+({
     name,
     cloudinaryImageId,
     cuisines,
@@ -40,5 +41,21 @@ const RestarentCart = ({
         </div>
     );
 };
+
+//Higher Order Component
+
+//Input - RestarentCart ==> RestarentCartPromoted
+
+export const withPromotedLabel = (RestarentCart)=>{
+    return (restarant)=>{
+        return(
+            <div>
+                <label className="restarentCart-promoted-label">Promoted</label>
+                <RestarentCart {...restarant}/>
+            </div>
+        )
+    }
+}
+
 
 export default RestarentCart

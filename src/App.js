@@ -11,7 +11,6 @@ import Contact from "./components/Contact";
 import RestarantMenu from "./components/Body/RestarentMenu";
 import Cart from "./components/Cart";
 import Profile from "./components/Profile";
-// import { createBrowserRouter , RouterProvider , Outlet} from "react-router-dom";
 import Shimmer from "./components/Shimmer";
 import "./style/common.css";
 import {createBrowserRouter , RouterProvider , Outlet  } from "react-router-dom"

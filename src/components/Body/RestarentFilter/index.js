@@ -4,11 +4,7 @@ import "./restarentFilter.css"
 
 const RestarentFilter = ({ filterResdata , setSearchRestarent , restarent }) => {
 
-    // const item = ["Rating4+", "Rating : High To Low", "Delivery Time", "Cost: Low To High", "Cost: High To Low"]
-
     const [itemSelect , setItemSelect] = useState(listFilter)
-
-    console.log(itemSelect)
     
     return (
 

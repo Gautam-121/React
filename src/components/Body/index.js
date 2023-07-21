@@ -1,5 +1,5 @@
 import { useState } from "react";
-import RestarentCart from "./RestarentCart";
+import RestarentCart , {withPromotedLabel} from "./RestarentCart";
 import Shimmer from "../Shimmer";
 import { Link } from "react-router-dom";
 import { filterResdata, filterData } from "../../utils/helper";
@@ -9,6 +9,7 @@ import SearchBar from "./SearchBar";
 import "./body.css"
 
 const Body = () => {
+
   const [searchInput, setSearchInput] = useState("");
   const restarents = useRestarent();
   const [searchRestarent, setSearchRestarent] = useState(restarents);
@@ -18,6 +19,8 @@ const Body = () => {
     setSearchRestarent(restarents);
     setEnter(true);
   }
+
+  const RestarentWithPromoted = withPromotedLabel(RestarentCart)
 
   return restarents.length === 0 ? (
     <Shimmer />
@@ -48,7 +51,9 @@ const Body = () => {
               key={restarent?.data?.id}
               className="restarent-link"
             >
-              <RestarentCart {...restarent?.data} />
+              {
+                restarent?.data?.promoted ? <RestarentWithPromoted {...restarent?.data}/> : <RestarentCart {...restarent?.data} />
+              }
             </Link>
           ))
         )}

@@ -97,3 +97,14 @@
     font-family: 'Raleway', sans-serif;
     font-size: 1rem;
 }
+
+.restarentCart-promoted-label{
+    /* margin: 50px; */
+    margin-left: 80px;
+    margin-top: 20px;
+    padding:4px;
+    background-color: black;
+    color: white;
+    border-radius: 8px;
+    position:absolute;
+}

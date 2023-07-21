@@ -14,9 +14,6 @@ const useRestarent = ()=>{
             "https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.1737143&lng=79.13068659999999&page_type=DESKTOP_WEB_LISTING"
         );
         const json = await data.json()
-
-        console.log(data)
-
         setRestarent(json?.data?.cards?.[2].data?.data?.cards)
     }
 

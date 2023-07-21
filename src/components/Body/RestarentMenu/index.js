@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { IMG_CDN_URL } from "../../../utils/constants"
 import useRestarentDetail from "../../../utils/useRestarentDetail"
@@ -10,9 +9,11 @@ const RestarantMenu = () => {
     const { resId } = useParams()
     const restarant = useRestarentDetail(resId)
 
-    console.log("res" , restarant)
+    console.log("res" , restarant?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards)
 
-    return (!restarant) ? <h1>Gautam</h1> : (
+    if(!restarant) return <Shimmer/>
+
+    return (
         <div className="menu">
             <div>
                 <h1>RestarentId : {restarant?.data?.cards[0]?.card?.card?.info?.id}</h1>
