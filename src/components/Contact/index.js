@@ -2,7 +2,7 @@ import { useState } from "react"
 import Teli_logo from "../../asset/teli_image.png"
 import {validation} from "../../utils/validation"
 import "./contact.css"
-import { sendData } from "../../utils/backendCall"
+import { sendData } from "../../utils/serverCall"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const Contact = ()=>{
@@ -26,14 +26,11 @@ const Contact = ()=>{
         setError(validation(user))
     }
 
-    console.log(user)
-
     if(error?.name === "" && error?.email === "" && error.message===""){
         console.log("Gauatanm")
         toast.success("Thanks for contacting MenuHub , We will reply ASAP")
         setError({})
     }
-
 
     return(
       <div  className="contact-container"> 

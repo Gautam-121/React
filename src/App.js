@@ -1,4 +1,4 @@
-import React, { lazy , Suspense } from "react";
+import React, { lazy , Suspense, useContext, useState } from "react";
 import ReactDOM from 'react-dom/client'
 import Header from './components/Header' // this is default Import
 import Body from "./components/Body/index";
@@ -10,44 +10,43 @@ import Error from "./components/Error"
 import Contact from "./components/Contact";
 import RestarantMenu from "./components/Body/RestarentMenu";
 import Cart from "./components/Cart";
-import Profile from "./components/Profile";
-import Shimmer from "./components/Shimmer";
-import "./style/common.css";
 import {createBrowserRouter , RouterProvider , Outlet  } from "react-router-dom"
+import "./style/common.css";
+import UserContext from "./utils/UserContext";
 
 
-
-// import Instamart from "./components/Instamart";
-
-//Lazy Lading
-//Chunking
-//Code Spliting
-//Dynamic Bundling
-//Lazy Loading
-// On Demand Import
-
-//This is Import it lazy way
 
 const Instamart = lazy(()=>import("./components/Instamart"))// import is promise 
-//Upon On Demand Loading --> 
 
 const AppLayout = () => {
 
+  const data = useContext(UserContext)
+  const [userInfo , setUserInfo] = useState(data)
 
-  //Never ever write lazy loading inside component
-  // const Instamart = lazy(()=>import("./components/Instamart"))// import is promise 
-
+  console.log(userInfo)
 
   return (
     <>
-      <Header />
-      <Outlet />   
-      <Footer />
-      {/* <Login/> */}
+       {/* DummyUser
+       <UserContext.Provider value={{loginData : userInfo}}>
+        ElonMusk 
+        <UserContext.Provider value={{loginData : {userName : "ElonMusk"}}}>
+           <Header />
+        </UserContext.Provider>
+         <Outlet />  
+         Gautam 
+        <UserContext.Provider value={{loginData : {userName : "Gautam" , loginUser : true}}}>
+         <Footer />
+        </UserContext.Provider> 
+      </UserContext.Provider> */}
+      <UserContext.Provider value={{loginData : userInfo , setUserInfo}}>
+      <Header/>
+      <Outlet/>
+      <Footer/>
+      </UserContext.Provider>
     </>
   )
 }
-
 
 const appRouter = createBrowserRouter([
   {
@@ -96,8 +95,6 @@ const appRouter = createBrowserRouter([
     element : <About/>
   }
 ])
-
-
 
 const root = ReactDOM.createRoot(document.getElementById("root"))
 root.render(<RouterProvider router={appRouter}/>) 

@@ -2,9 +2,12 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../asset/Food.png";
 import "./header.css";
+import { useContext } from "react";
+import UserContext from "../../utils/UserContext";
 
 const Header = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
+  const {loginData : {loginUser , userName}} = useContext(UserContext)
 
   return (
     <div className="max-width header-container">
@@ -19,8 +22,8 @@ const Header = () => {
         <Link to="/contact">Contact</Link>
         <Link to="/cart">Cart</Link>
         <Link to="/instamart">Instamart</Link>
-        <Link to={isLoggedIn ? "/logOut" : "/login"}>
-          {isLoggedIn ? " " : "Login"}
+        <Link to={loginUser ? "" : "/login"}>
+          {loginUser? userName : "Login"}
         </Link>
       </nav>
     </div>

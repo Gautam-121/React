@@ -42,10 +42,6 @@ const RestarentCart =
     );
 };
 
-//Higher Order Component
-
-//Input - RestarentCart ==> RestarentCartPromoted
-
 export const withPromotedLabel = (RestarentCart)=>{
     return (restarant)=>{
         return(

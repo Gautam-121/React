@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import {validation} from "../../../utils/validation"
-import {sendData} from "../../../utils/backendCall.js"
+import {sendData} from "../../../utils/serverCall.js"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "./register.css"
@@ -16,7 +16,6 @@ const Register =  () => {
     })
 
     const [error, setError] = useState({})
-
     const navigate = useNavigate()
 
     const changeInput = (e) => setUser({ ...user, [e.target.name]: e.target.value })

@@ -1,13 +1,11 @@
 import { useState } from "react"
 import { Link, useNavigate } from 'react-router-dom'
 import {validation} from "../../../utils/validation"
-import { sendData } from "../../../utils/backendCall"
+import { sendData } from "../../../utils/serverCall"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {setCookie , getCookie , removeCookie} from "../../../utils/cookie"
 import "./login.css"
-
-
 
 const Login = () => {
 
@@ -17,7 +15,6 @@ const Login = () => {
     })
 
     const [error , setError] = useState({})
-
     const navigate =  useNavigate()
 
     const changeInput = (event) => setUser({ ...user, [ event.target.name]: event.target.value})
@@ -28,11 +25,8 @@ const Login = () => {
     }
 
     async function getResData(){
-    
+
         const data = await sendData(user , "post" , "login")
-
-        console.log("login" , data)
-
         if(data.success){
 
             removeCookie("token")

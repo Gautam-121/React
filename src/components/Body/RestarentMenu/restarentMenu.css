@@ -1,0 +1,73 @@
+.restarentMenu_container{
+    max-width: 800px;
+    margin: auto;
+    margin-top: 70px;
+}
+
+.restarent_detail_container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.restarent_cusines{
+    margin-top: -13px;
+    color: rgb(154, 142, 142);
+}
+
+.restarent_rating_detail{
+    border: 1px solid red;
+    height: fit-content;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 1px 5px #f9f9f9;
+    border: 1px solid #e9e9eb;
+    text-align: center;
+    float: right;
+    max-width: 100px;
+}
+
+.restarent_rating{
+    color: #3d9b6d;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e9e9eb;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.restarent_totalRating{
+    font-size: 11px;
+    color: #8b8d97;
+    font-family: ProximaNovaCondensedRegular,arial,Helvetica Neue,sans-serif;
+    font-weight: 600;
+}
+
+.restarent_seperator{
+    border: none;
+    border-bottom: 1px dashed #d3d3d3;
+}
+
+.restarent_margin_botton{
+    margin-bottom: 18px;
+}
+
+.restarent_time_cost_wrapper{
+    color: #3e4152;
+    font-size: 15px;
+    font-weight: 700;
+    display: flex;
+    margin-left: -10px;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+}
+
+.RestaurantTimeCost_item1{
+    margin-right: 24px;
+    color: #3E4152;
+    font-weight: 800;
+    font-size: larger;
+    margin-top: 10px;
+}

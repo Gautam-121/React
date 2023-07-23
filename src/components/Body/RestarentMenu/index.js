@@ -1,89 +1,66 @@
 import { useParams } from "react-router-dom"
-import { IMG_CDN_URL } from "../../../utils/constants"
 import useRestarentDetail from "../../../utils/useRestarentDetail"
 import Shimmer from "../../Shimmer"
 import "./restarentMenu.css"
+import RestarentMenuList from "./RestarentMenuList"
+import { useState } from "react"
 
 const RestarantMenu = () => {
 
     const { resId } = useParams()
     const restarant = useRestarentDetail(resId)
 
-    console.log("res" , restarant?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards)
+    const [showItem , setShowItem] = useState(null)
+
+    const showListItem = (index)=>{
+        if(showItem === index) setShowItem(null)
+        else setShowItem(index)
+    }
 
     if(!restarant) return <Shimmer/>
 
+    const restarentMenuFilter = restarant?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((restarant) => {
+        return restarant?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    })
+
+    const {areaName , avgRating , costForTwo ,cuisines , name , totalRatingsString , sla:{maxDeliveryTime}} = restarant?.data?.cards[0]?.card?.card?.info
+
     return (
-        <div className="menu">
-            <div>
-                <h1>RestarentId : {restarant?.data?.cards[0]?.card?.card?.info?.id}</h1>
-                <h2>RestarentName : {restarant?.data?.cards[0]?.card?.card?.info?.name}</h2>
-                <img
-                    src={IMG_CDN_URL + restarant?.data?.cards[0]?.card?.card?.info?.cloudinaryImageId}
-                    alt="This is Restarent Image" />
-                <h3>{restarant?.data?.cards[0]?.card?.card?.info?.areaName}</h3>
-                <h3>{restarant?.data?.cards[0]?.card?.card?.info?.city}</h3>
-                <h3>{restarant?.data?.cards[0]?.card?.card?.info?.avgRating}</h3>
-                <h3>{restarant?.data?.cards[0]?.card?.card?.info?.costForTwo / 100}</h3>
+        <div className="restarentMenu_container">
+            <div className="restarent_detail_container">
+                <div className="restarent_basic_detail">
+                    <h3>{name}</h3>
+                    <p className="restarent_cusines">{cuisines.join(" , ")}</p>
+                    <p className="restarent_cusines">{areaName}, Nagpur</p>
+                </div>
+                <div className="restarent_rating_detail">
+                   <span className="restarent_rating">☆{avgRating}</span>
+                   <span className="restarent_totalRating">{totalRatingsString}</span>
+                </div>
             </div>
-            <div>
-                <label htmlFor="menu">Menu</label>
-                <ul>
-                    {
-                        // console.log(restarant?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards[0]?.card?.info?.name)
-                        restarant?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards
-                            .map(res => (
-                                <li key={res?.card?.info?.id}>{res?.card?.info?.name}</li>
-                            ))
-                    }
-                </ul>
-            </div>
+             <hr className="restarent_seperator"/>
+             <div className="restarent_margin_botton">
+                <div className="restarent_time_cost_wrapper">
+                    <div className="RestaurantTimeCost_item1">⌛{maxDeliveryTime} MINS</div>
+                    <div className="RestaurantTimeCost_item1">₹ {costForTwo/100}</div>
+                </div>
+             </div>
+             <hr className="restarent_seperator"/>
+             { 
+                restarentMenuFilter.map((item , index)=>(
+                    //Controlled Component
+                    <RestarentMenuList 
+                    key={index}
+                    data={item?.card?.card}
+                    showItem={showItem===index ? true : false}
+                    // setShowItem={()=>setShowItem(index)}
+                    showListItem={()=>showListItem(index)}
+                     />
+                ))
+             }
         </div>
     )
 }
 
-// const RestarantMenu = () => {
-
-//     //How to read dynamic url route
-//     /*const [restarant, setRestarant] = useState(null)*/
-
-//     const { resId } = useParams()
-//     const restarant = useRestarentDetail(resId)
-
-//     if(restarant.length === 0){
-//         <Shimmer/>
-//         return
-//     }
-
-//     let {
-//         name,
-//         areaName,
-//         cuisines,
-//         costForTwo,
-//         cloudinaryImageId,
-//         avgRating,
-//         totalRating,
-//         sla: { delivaryTime },
-//       } = restarant?.data?.cards[0]?.card?.card?.info
-  
-    
-//     return (restarant.length === 0) ? <Shimmer/> : (
-//         <><h1>{restarant?.data?.cards[0]?.card?.card?.info.name}</h1></>
-//     )
-
-//     // return (restarant.length === 0) ? <Shimmer/> :  (
-//     //     <div className="restarent_menu_page">
-//     //         <div>
-//     //             <h4>{ name }</h4><br/>
-//     //             <span>{cuisines.join(" , ")}</span><br />
-//     //             <span>{areaName}</span>
-//     //         </div>
-//     //         <div>
-//     //             <h5>☆{avgRating}</h5><br />
-//     //             <span>{totalRating}</span>
-//     //         </div>
-//     //     </div>
-//     // )
-// }
 
 export default RestarantMenu

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState , useContext } from "react";
 import RestarentCart , {withPromotedLabel} from "./RestarentCart";
 import Shimmer from "../Shimmer";
 import { Link } from "react-router-dom";
@@ -7,6 +7,7 @@ import useRestarent from "../../utils/useRestarentList";
 import RestarentFilter from "./RestarentFilter/index.js";
 import SearchBar from "./SearchBar";
 import "./body.css"
+import UserContext from "../../utils/UserContext";
 
 const Body = () => {
 
@@ -22,6 +23,8 @@ const Body = () => {
 
   const RestarentWithPromoted = withPromotedLabel(RestarentCart)
 
+  const {loginData , setUserInfo} = useContext(UserContext)
+
   return restarents.length === 0 ? (
     <Shimmer />
   ) : (
@@ -31,6 +34,10 @@ const Body = () => {
         setSearchInput={setSearchInput}
         restarents={restarents}
         setSearchRestarent={setSearchRestarent}
+      />
+      <input type="text" 
+      onChange={(e)=>setUserInfo({loginUser : true,userName :e.target.value})}
+      value={loginData.userName}
       />
       <div className="filter-res">
         <h2 className="total-res">{searchRestarent.length} Restarents</h2>

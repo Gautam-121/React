@@ -1,0 +1,44 @@
+.restarent_item_wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 50px 0px;
+}
+
+.restarent_item_name{
+    color: #3E4152;
+    margin: 0px 4px 0px 0px;
+    font-weight: 900;
+}
+
+.restarent_item_price{
+    color: #3E4152;
+    margin-top: 5px;
+    font-weight: 800;
+}
+
+.restarent_img_wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.restarent_item_img{
+    background-color: rgba(40,44,63,.05);
+    background-blend-mode: overlay;
+    height: 96px;
+    border-radius: 6px;
+}
+
+.restarent_item_add{
+    margin-top: -10px;
+    padding: 10px 40px;
+    color: #60b246;
+    cursor: pointer;
+    box-shadow: 0 1px 5px #f9f9f9;
+    border: 1px solid #e9e9eb;
+    border-radius: 8px;
+    background-color:  #f9f9f9;;
+}
+
+
