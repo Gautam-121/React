@@ -1,7 +1,7 @@
 import { createContext } from "react";
 
 const UserContext = createContext({
-    loginUser : true,
+    loginUser : false,
     userName : "Dummy User"
 })
 

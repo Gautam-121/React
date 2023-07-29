@@ -7,7 +7,7 @@ const RestarentCart =
     cloudinaryImageId,
     cuisines,
     avgRating,
-    deliveryTime,
+    sla:{deliveryTime},
     costForTwo,
     aggregatedDiscountInfo,
 }) => {
@@ -28,7 +28,7 @@ const RestarentCart =
                 <p>•</p>
                 <p className="resDeliverTime">{deliveryTime} Mins</p>
                 <p>•</p>
-                <p className="resPrice">₹{costForTwo / 100} For Two</p>
+                <p className="resPrice">{costForTwo}</p>
             </div>
              {
                 offer ?

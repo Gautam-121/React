@@ -4,10 +4,15 @@ import Logo from "../../asset/Food.png";
 import "./header.css";
 import { useContext } from "react";
 import UserContext from "../../utils/UserContext";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   
   const {loginData : {loginUser , userName}} = useContext(UserContext)
+
+  //Suscribing To The store By the Selector
+  const cartItems = useSelector((store)=>store.cart.items)
+  console.log(cartItems)
 
   return (
     <div className="max-width header-container">
@@ -20,9 +25,9 @@ const Header = () => {
         <Link to="/">Home</Link>
         <Link to="/about">About</Link>
         <Link to="/contact">Contact</Link>
-        <Link to="/cart">Cart</Link>
+        <Link to="/cart">Cart ({cartItems.length} items)</Link>
         <Link to="/instamart">Instamart</Link>
-        <Link to={loginUser ? "" : "/login"}>
+        <Link to={loginUser ? "/logout" : "/login"}>
           {loginUser? userName : "Login"}
         </Link>
       </nav>

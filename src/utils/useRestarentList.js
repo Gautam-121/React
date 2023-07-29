@@ -11,10 +11,10 @@ const useRestarent = ()=>{
     async function getRestarents() {
 
         const data = await fetch(
-            "https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.1737143&lng=79.13068659999999&page_type=DESKTOP_WEB_LISTING"
+            "https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.1458004&lng=79.0881546&is-seo-homepage-enabled=true&page_type"
         );
         const json = await data.json()
-        setRestarent(json?.data?.cards?.[2].data?.data?.cards)
+        setRestarent(json?.data?.cards?.[2].card?.card?.gridElements?.infoWithStyle?.restaurants)
     }
 
     return restarant
@@ -22,3 +22,31 @@ const useRestarent = ()=>{
 }
 
 export default useRestarent
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

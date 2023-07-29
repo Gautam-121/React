@@ -39,6 +39,14 @@ but we use react.production.js use at time deplying our app , so it reduce size 
 when developing react app it is recommended to developement version of the libaray (react,developement.js) during devolpement and testing phase.
 when deplyoing app to the production environment . It is recommended to use production version of library (react.production.js) to optimise the performance and reduce the size of javascript bundle that is loaded by the user browser.
 
+# Redux ToolKit
+  -Install @reduxjs/toolkit and react-redux
+  -Build our Store
+  -Connect our Store to Our app
+  -Slice (cartSlice)
+  -dispatch(action)
+  -Selector
+
 
 
 

@@ -1,13 +1,12 @@
-import { useState , useContext } from "react";
+import { useState  } from "react";
 import RestarentCart , {withPromotedLabel} from "./RestarentCart";
 import Shimmer from "../Shimmer";
 import { Link } from "react-router-dom";
-import { filterResdata, filterData } from "../../utils/helper";
+import { filterResdata } from "../../utils/helper";
 import useRestarent from "../../utils/useRestarentList";
 import RestarentFilter from "./RestarentFilter/index.js";
 import SearchBar from "./SearchBar";
 import "./body.css"
-import UserContext from "../../utils/UserContext";
 
 const Body = () => {
 
@@ -21,9 +20,9 @@ const Body = () => {
     setEnter(true);
   }
 
-  const RestarentWithPromoted = withPromotedLabel(RestarentCart)
+  console.log(searchRestarent , enter)
 
-  const {loginData , setUserInfo} = useContext(UserContext)
+  const RestarentWithPromoted = withPromotedLabel(RestarentCart)
 
   return restarents.length === 0 ? (
     <Shimmer />
@@ -34,10 +33,6 @@ const Body = () => {
         setSearchInput={setSearchInput}
         restarents={restarents}
         setSearchRestarent={setSearchRestarent}
-      />
-      <input type="text" 
-      onChange={(e)=>setUserInfo({loginUser : true,userName :e.target.value})}
-      value={loginData.userName}
       />
       <div className="filter-res">
         <h2 className="total-res">{searchRestarent.length} Restarents</h2>
@@ -54,12 +49,12 @@ const Body = () => {
         ) : (
           searchRestarent.map((restarent) => (
             <Link
-              to={"/restarant/" + restarent?.data?.id}
-              key={restarent?.data?.id}
+              to={"/restarant/" + restarent?.info?.id}
+              key={restarent?.info?.id}
               className="restarent-link"
             >
               {
-                restarent?.data?.promoted ? <RestarentWithPromoted {...restarent?.data}/> : <RestarentCart {...restarent?.data} />
+                restarent?.info?.promoted ? <RestarentWithPromoted {...restarent?.info}/> : <RestarentCart {...restarent?.info} />
               }
             </Link>
           ))

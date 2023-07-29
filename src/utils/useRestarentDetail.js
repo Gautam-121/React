@@ -20,4 +20,5 @@ const useRestarentDetail = (resId)=>{
     return restarent
 }
 
+
 export default useRestarentDetail

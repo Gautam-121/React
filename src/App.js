@@ -13,7 +13,8 @@ import Cart from "./components/Cart";
 import {createBrowserRouter , RouterProvider , Outlet  } from "react-router-dom"
 import "./style/common.css";
 import UserContext from "./utils/UserContext";
-
+import {Provider} from "react-redux"
+import appStore from "./utils/appStore";
 
 
 const Instamart = lazy(()=>import("./components/Instamart"))// import is promise 
@@ -23,29 +24,17 @@ const AppLayout = () => {
   const data = useContext(UserContext)
   const [userInfo , setUserInfo] = useState(data)
 
-  console.log(userInfo)
-
   return (
     <>
-       {/* DummyUser
-       <UserContext.Provider value={{loginData : userInfo}}>
-        ElonMusk 
-        <UserContext.Provider value={{loginData : {userName : "ElonMusk"}}}>
-           <Header />
+      <Provider store={appStore}>
+        <UserContext.Provider value={{ loginData: userInfo, setUserInfo }}>
+          <Header />
+          <Outlet />
+          <Footer />
         </UserContext.Provider>
-         <Outlet />  
-         Gautam 
-        <UserContext.Provider value={{loginData : {userName : "Gautam" , loginUser : true}}}>
-         <Footer />
-        </UserContext.Provider> 
-      </UserContext.Provider> */}
-      <UserContext.Provider value={{loginData : userInfo , setUserInfo}}>
-      <Header/>
-      <Outlet/>
-      <Footer/>
-      </UserContext.Provider>
+      </Provider>
     </>
-  )
+  );
 }
 
 const appRouter = createBrowserRouter([

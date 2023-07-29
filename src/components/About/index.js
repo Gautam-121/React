@@ -3,6 +3,7 @@ import DeliveryImage from "../../asset/Delivery_image.jpg"
 import "./about.css"
 
 const About = () => {
+
     return (
         <div className="about-us">
             <div className="first-about">

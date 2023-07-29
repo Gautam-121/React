@@ -1,6 +1,6 @@
 export function filterData(restarents, searchInput) {
     const filterResList = restarents.filter(restarent => (
-        restarent?.data?.name?.toLocaleLowerCase().includes(searchInput?.toLocaleLowerCase())
+        restarent?.info?.name?.toLocaleLowerCase().includes(searchInput?.toLocaleLowerCase())
     ))
     return filterResList
 }
@@ -23,30 +23,32 @@ export function filterResdata( name , setSearchRestarent , restarents , itemSele
 
         if(element.active && element.name === "Rating4+"){
             updateRes = updateRes.filter(restarent => (
-                restarent?.data?.avgRating >= 4
+                restarent?.info?.avgRating >= 4
             ))
         }
 
         if(element.active && element.name === "Rating : High To Low"){
             updateRes.sort((a, b) => {
-                return b?.data?.avgRating - a?.data?.avgRating
+                return b?.info?.avgRating - a?.info?.avgRating
             })
         }
 
         if(element.active && element.name === "Delivery Time"){
             updateRes.sort((a, b) => {
-                return a?.data?.deliveryTime - b?.data?.deliveryTime
+                return a?.info?.deliveryTime - b?.info?.deliveryTime
             })
         }
+
+
 
         if(element.active && element.name === "Cost: Low To High"){
             updateRes.sort((a, b) => {
 
-                if (a?.data?.costForTwo == b?.data?.costForTwo) {
-                    return a?.data?.deliveryTime - b?.data?.deliveryTime
+                if (Number(a?.info?.costForTwo.slice(1 ,4)) == Number(b?.info?.costForTwo.slice(1 ,4))) { 
+                    return a?.info?.sla?.deliveryTime - b?.info?.sla?.deliveryTime
                 }
                 else {
-                    return a?.data?.costForTwo - b?.data?.costForTwo
+                    return Number(a?.info?.costForTwo.slice(1 ,4)) - Number(b?.info?.costForTwo.slice(1 ,4))
                 }
             })
         }
@@ -54,11 +56,11 @@ export function filterResdata( name , setSearchRestarent , restarents , itemSele
         if(element.active && element.name === "Cost: High To Low"){
             updateRes.sort((a, b) => {
 
-                if (a?.data?.costForTwo == b?.data?.costForTwo) {
-                    return a?.data?.deliveryTime - b?.data?.deliveryTime
+                if (Number(a?.info?.costForTwo.slice(1 ,4)) == Number(b?.info?.costForTwo.slice(1 ,4))) {
+                    return a?.info?.sla?.deliveryTime - b?.info?.sla?.deliveryTime
                 }
                 else {
-                    return b?.data?.costForTwo - a?.data?.costForTwo
+                    return Number(b?.info?.costForTwo.slice(1 ,4)) - Number(a?.info?.costForTwo.slice(1 ,4))
                 }
             })
         }
